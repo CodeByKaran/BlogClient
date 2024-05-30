@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+
 const AppTitle = ({ 
    title="Do BloG", delay = 100 
 }) => {
@@ -24,8 +25,8 @@ const AppTitle = ({
   }, [title, delay]);
 
   return (
-    <div className="w-fit h-fit bg-gradient-to-br from-indigo-600 to-blue-300 bg-clip-text">
-     <h2 className="text-transparent font-bold  text-left text-[25px] ">{displayedTitle}</h2>
+    <div className="w-fit h-fit bg-gradient-to-br from-[#bf60ee] to-[#e83d63] bg-clip-text flex ">
+     <h2 className="text-transparent font-bold  text-left text-[23px] ">{displayedTitle}</h2>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import humanIcon from "../../assets/human_icon.svg"
 
 export default function UserPhoto({
    src=humanIcon,
+   username = "Karanjsjsjsjsjs",
    fun = ()=>{}
 }) {
    const [ispressed, setispressed] = useState(false)
@@ -14,10 +15,13 @@ export default function UserPhoto({
    }
    
   return (
-     <span className={`block w-[40px] h-[40px] rounded-full p-2 flex justify-center items-center overflow-hidden border-2 border-indigo-400 relative ${ispressed && "scale-105 shadow-lg shadow-indigo-500 "} transition-all duration-300 `}
+    <div className="flex items-baseline">
+     <p className="text-gray-300 mr-2 self-end capitalize overflow-x-clip max-w-[50px] font-bold">{username.length>5?username.slice(0,5)+"...":username}</p>
+     <span className={`block w-[35px] h-[35px]  rounded-full p-2 flex justify-center items-center overflow-hidden border border-[#bf60ee] relative ${ispressed && "scale-105 shadow-lg shadow-[#bf60ee] "} transition-all duration-300 `}
       onClick={addRipple}
        >
       <img src={src} className="object-cover h-full w-full   "/>
      </span>
+     </div>
   )
 }

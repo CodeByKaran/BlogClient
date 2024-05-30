@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
 
 .ripple{
    height: wrap-content;
@@ -18,7 +23,6 @@
    height: 0%;
    border-radius: 999px;
    z-index: -1;
-   background: linear-gradient(30deg,#ff7e5f,#feb47b);
    animation: ripple_animation 0.35s ease-in 1;
 }
 
@@ -34,4 +38,47 @@
 }
 
 
+.gradient_border{
+   position: relative;
+}
 
+.gradient_border::after{
+   content: "";
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   height: 1.2px;
+   background: #bf60ee;
+   animation: border_animate 3s linear infinite;
+}
+
+
+@keyframes border_animate{
+   0%{
+     background: #cc1de9;
+   }50%{
+      background: #e366c0
+   }75%{
+      background: #e83d63;
+   }100%{
+      background: #bf60ee;
+   }
+}
+
+
+.blur_effect{
+   position: fixed;
+}
+
+.blur_effect::before{
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   filter: blur(1px);
+   background: rgba(113,112,112,0.150);
+   z-index: -1;
+}
