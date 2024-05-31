@@ -16,7 +16,12 @@ export default function App() {
   return (
     <center className="p-2 flex flex-col items-center">
       <TopNav />
-       
+       <Routes>
+        <Route path="/" element={<Home/>} />
+        <Route path="search" element={<Search/>} />
+        <Route path="create-post" element={<CreatePost/>} />
+        <Route path="settings" element={<Settings/>} />
+       </Routes>
       <BottomNav/>
     </center>
   )
