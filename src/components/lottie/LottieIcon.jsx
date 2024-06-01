@@ -1,20 +1,21 @@
-import React from 'react'
+import React, { forwardRef } from 'react';
 import 'lord-icon-element';
 
-export default function LottieIcon({
-   id = "ayhtotha",
-   w = "24px",
-   h = "24px"
-}) {
+const LottieIcon = ({
+      id = "ayhtotha",
+      stroke,
+      style,
+      color ="#d7d7d7"
+   })=>{
   return (
-     <lord-icon
+    <lord-icon
       src={`https://cdn.lordicon.com/${id}.json`}
       trigger="click"
-      colors="primary:#d7d7d7,secondary:#7d7d7d"
-       style={{
-             width: w,
-             height: h,
-          }}>
-     </lord-icon>
-  )
-}
+      stroke = {stroke&&stroke}
+      colors={`primary:${color},secondary:#7d7d7d`}
+      style={style}
+    ></lord-icon>
+  );
+};
+
+export default LottieIcon;

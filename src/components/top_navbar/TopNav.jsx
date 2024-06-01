@@ -9,7 +9,9 @@ export default function TopNav() {
         <AppTitle />
       </div>
       <div>
-        <UserPhoto />
+        <UserPhoto 
+          showname = {true}
+          />
       </div>
     </div>
   )

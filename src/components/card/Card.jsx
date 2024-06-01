@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import HumanIcon from "../../assets/human_icon.svg";
 import ButtonBlack from "../../components/buttons/ButtonBlack.jsx";
 import Sample from "../../assets/Sample.jpg"
@@ -24,6 +24,7 @@ export default function Card({
      setmoreClick(!moreClick)
      setoverContent(!overContent)
   }
+  
 
   return (
     <div className="border-[0.8px] border-gray-500/20 rounded w-[95%] sm:w-[95%] md:w-[80%] lg:w-[55%] mt-4 mb-16 shadow-md shadow-slate-900 max-h-fit pb-2">
@@ -40,16 +41,16 @@ export default function Card({
         <ButtonBlack text="Follow" width="90px" radius="25px" size="14px" />
       </div>
 
-      <p className={`overflow-clip min-h-[30px] max-h-fit leading-[18px] font-normal text-[16px] text-gray-300 w-full text-start mt-2 ${moreClick&&"h-fit"} select-none p-2`}>
+      <p className={`overflow-clip min-h-[30px] max-h-fit leading-[18px] font-[400] text-[15px] text-gray-300 w-full text-start mt-2 ${moreClick&&"h-fit"} select-none p-2`}>
         {overContent ? (
           <>
             {contentDec.slice(0, 110)}
-            <span className="text-gray-100 font-semibold select-none " onClick={handleMoreClick}> ..More</span>
+            <span className="text-gray-100 font-semibold select-none   " onClick={handleMoreClick}> ..More</span>
           </>
         ) : (
           <>
           {contentDec}
-         <span className="text-gray-100 font-semibold select-none " onClick={handleMoreClick}> Less</span>
+         <span className="text-gray-100 font-semibold select-none animate-pulse" onClick={handleMoreClick}> Less</span>
           </>
         )}
       </p>
@@ -62,30 +63,46 @@ export default function Card({
       </div>
       
    <div className="w-full px-3 flex justify-start mt-3">
-      <div className="w-fit rounded-full bg-blue-500  border-[0.7px] border-gray-200 text-[12px] font-bold text-gray-300 leading-none px-2 py-1 ">
-           116k
+      <div className="w-fit rounded-full bg-gradient-to-r from-[#e84d4d] to-[#e957ad]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ">
+           116k Likes
       </div>
-    <div className="w-fit rounded-full bg-yellow-500  border-[0.7px] border-gray-200 text-[12px] font-bold text-gray-300 leading-none px-2 py-1 ml-2">
-           20k
+    <div className="w-fit rounded-full bg-gradient-to-r from-[#575cd9] to-[#ea5c90]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ml-2">
+           20k Comments
       </div>
-    <div className="w-fit rounded-full bg-green-500  border-[0.7px] border-gray-200 text-[12px] font-bold text-gray-300 leading-none px-2 py-1 ml-2">
-           40
+    <div className="w-fit rounded-full bg-gradient-to-r from-[#4890f1] to-[#a37af4]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ml-2">
+           40 Share
       </div>
    </div>
 
       <div className="flex justify-between items-center text-slate-100 mt-6 ">
-        <button className="w-[calc(100%/3.5)] bg-blue-500 p-1 font-bold text-[12px] divider rounded-full m-1 flex items-center justify-center relative">
+        <button className="w-[calc(100%/3.5)] bg-blue-500 p-1 font-bold text-[12px] divider rounded-full m-1 flex items-center justify-center relative h-[32px]" >
          <LottieIcon 
           id = "hbzwsetw"
-          />Like
+          style={{
+             width:"100%",
+             height:"25px",
+             borderRadius:"25px"
+          }}
+          />
         </button>
-       <button className="w-[calc(100%/3.5)] bg-yellow-500 p-1 font-bold text-[12px] divider rounded-full m-1 flex items-center justify-center">
-        <LottieIcon/>Comment
+       <button className="w-[calc(100%/3.5)] bg-yellow-500 p-1 font-bold text-[12px] divider rounded-full m-1 flex items-center justify-center h-[32px]" >
+        <LottieIcon
+        style={{
+             width:"100%",
+             height:"25px",
+             borderRadius:"25px"
+          }}
+        />
        </button>
-      <button className="w-[calc(100%/3.5)] bg-green-500 p-1 font-bold text-[12px]  rounded-full m-1 flex items-center justify-center">
+      <button className="w-[calc(100%/3.5)] bg-green-500 p-1 font-bold text-[12px]  rounded-full m-1 flex items-center justify-center relative h-[32px]" >
        <LottieIcon
         id = "boyoxams"
-        />Share
+        style={{
+             width:"100%",
+             height:"25px",
+             borderRadius:"25px"
+          }}
+        />
       </button>
       </div>
       

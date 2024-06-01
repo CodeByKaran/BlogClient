@@ -2,39 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face{
+   font-family : "logo";
+   src : url("./fonts/DancingScript-Bold.ttf") format('truetype');
+}
+
 *{
    margin: 0;
    padding: 0;
    box-sizing: border-box;
 }
 
-.ripple{
-   height: wrap-content;
-   width : wrap-content;
-}
-
-.ripple::before{
-   content: "";
-   position: absolute;
-   inset: 0px;
-   top: -2px;
-   left: -1px;
-   width: 0%;
-   height: 0%;
-   border-radius: 999px;
-   z-index: -1;
-   animation: ripple_animation 0.35s ease-in 1;
-}
-
-
-@keyframes ripple_animation{
-   0%{
-      width: 0%;
-      height: 0%;
-   }100%{
-      width: 120%;
-      height: 120%;
-   }
+.logoFont{
+   font-family: 'logo';
+   font-weight: 700 !important;
+   font-style: normal;
 }
 
 
@@ -66,7 +48,6 @@
    }
 }
 
-
 .blur_effect{
    position: fixed;
 }
@@ -78,15 +59,32 @@
    left: 0;
    width: 100%;
    height: 100%;
-   backdrop-filter: blur(10px);
+   backdrop-filter: blur(9px);
    background: rgba(113,112,112,0.450);
    z-index: -1;
+}
+
+.blur_effect_two{
+   position: fixed;
+}
+
+.blur_effect_two::before{
+   content: "";
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   backdrop-filter: blur(9px);
+   background: rgba(113,112,112,0.250);
+   z-index: -1;
+   border-bottom-right-radius: 9px;
+   border-bottom-left-radius: 9px;
 }
 
 .divider{
    position: relative;
 }
-
 
 .divider::before{
    content: "";
@@ -98,4 +96,8 @@
    width: 2px;
    background: #d4d4d4b5;
    align-self: center;
+}
+
+.scrollBar::-webkit-scrollbar{
+   display: none;
 }

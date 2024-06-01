@@ -11,11 +11,14 @@ import {
   Routes,
   Route
 } from "react-router-dom";
+import ShowNav from "./components/to-show-nav/ShowNav.jsx"
 
 export default function App() {
   return (
     <center className="p-2 flex flex-col items-center">
+    <ShowNav>
       <TopNav />
+   </ShowNav>
        <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="search" element={<Search/>} />

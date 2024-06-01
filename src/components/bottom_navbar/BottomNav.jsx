@@ -1,18 +1,34 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import NavIcon from "../nav_icon/NavIcon.jsx"
 import HomeIcon from "../../assets/Home.gif"
-import {NavLink} from "react-router-dom"
+import {NavLink,useLocation} from "react-router-dom"
 
 export default function BottomNav() {
   
-  const [navItem, setnavItem] = useState(1)
+  const [navItem, setnavItem] = useState(null)
   
   const handlePage=(item)=>{
      setnavItem(item)
   }
   
+  const URI = useLocation()
+  
+  useEffect(() => {
+    const URI_SPLIT = URI.pathname.split("/")
+    if(URI_SPLIT[1]=="search"){
+       setnavItem(2)
+    }else if(URI_SPLIT[1]=="create-post"){
+       setnavItem(3)
+    }else if(URI_SPLIT[1]=="settings"){
+       setnavItem(4)
+    }else{
+       setnavItem(1)
+    }
+  }, [URI])
+  
+  
   return (
-    <div className="fixed bottom-0 left-0 md:left-[8%] w-full sm:w-full md:w-[85%] lg:w-[60%] pb-2 px-6 flex justify-between items-start blur_effect">
+    <div className="fixed bottom-0 left-0 md:left-[8%] w-full sm:w-full md:w-[85%] lg:w-[60%] pb-2 px-6 flex justify-between items-start blur_effect h-fit">
    <NavLink to={"/"}>   
     <NavIcon 
      imgdescription = "Home"
