@@ -4,6 +4,7 @@ import ButtonBlack from "../../components/buttons/ButtonBlack.jsx";
 import Sample from "../../assets/Sample.jpg"
 import ButtonWhite from "../../components/buttons/ButtonWhite.jsx"
 import LottieIcon from "../lottie/LottieIcon.jsx"
+import { showSuccessToast,showInfoToast,showErrorToast,showWarnToast } from "../../utils/ShowToast.js";
 
 export default function Card({
   contentDec = "In the heart of a bustling city, a small cafe stood quietly on a cobblestone street, its warm glow inviting passersby. The aroma of freshly brewed coffee wafted through the air, mingling with the scent of baked pastries. Inside, the walls were adorned with vintage posters and shelves lined with books, creating an ambiance of timeless charm. The barista, an elderly man with a twinkle in his eye, greeted each customer with a friendly nod and a knowing smile."
@@ -25,6 +26,9 @@ export default function Card({
      setoverContent(!overContent)
   }
   
+  const handleLike=()=>{
+     showErrorToast("You Liked Karan007")
+  }
 
   return (
     <div className="border-[0.8px] border-gray-500/20 rounded w-[95%] sm:w-[95%] md:w-[80%] lg:w-[55%] mt-4 mb-16 shadow-md shadow-slate-900 max-h-fit pb-2">
@@ -63,7 +67,7 @@ export default function Card({
       </div>
       
    <div className="w-full px-3 flex justify-start mt-3">
-      <div className="w-fit rounded-full bg-gradient-to-r from-[#e84d4d] to-[#e957ad]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ">
+      <div className="w-fit rounded-full bg-gradient-to-r from-[#e84d4d] to-[#e957ad]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 " >
            116k Likes
       </div>
     <div className="w-fit rounded-full bg-gradient-to-r from-[#575cd9] to-[#ea5c90]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ml-2">
@@ -75,7 +79,7 @@ export default function Card({
    </div>
 
       <div className="flex justify-between items-center text-slate-100 mt-6 ">
-        <button className="w-[calc(100%/3.5)] bg-blue-500 p-1 font-bold text-[12px] divider rounded-full m-1 flex items-center justify-center relative h-[32px]" >
+        <button className="w-[calc(100%/3.5)] bg-blue-500 p-1 font-bold text-[12px] divider rounded-full m-1 flex items-center justify-center relative h-[32px]">
          <LottieIcon 
           id = "hbzwsetw"
           style={{

@@ -28,7 +28,7 @@ export default function BottomNav() {
   
   
   return (
-    <div className="fixed bottom-0 left-0 md:left-[8%] w-full sm:w-full md:w-[85%] lg:w-[60%] pb-2 px-6 flex justify-between items-start blur_effect h-fit">
+    <div className="fixed bottom-0   w-full sm:w-full md:w-[85%] lg:w-[60%] pb-2 px-6 flex justify-between items-start blur_effect h-fit justify-self-center">
    <NavLink to={"/"}>   
     <NavIcon 
      imgdescription = "Home"

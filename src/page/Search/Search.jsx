@@ -10,7 +10,7 @@ export default function Search() {
    
  window.addEventListener('scroll', () => {
   const scrollPosition = window.scrollY || document.documentElement.scrollTop;
-  if(scrollPosition>=30){
+  if(scrollPosition>=24){
      setisScrolled(true)
   }else{
      setisScrolled(false)
@@ -21,7 +21,7 @@ export default function Search() {
    
   return (
     <div className="text-white w-full sm:w-full md:w-[80%] lg:w-[60%] overflow-y-scroll flex flex-col items-center">
-    <div className={`top-0 pt-2 px-3 w-full sm:w-full md:w-[80%] lg:w-[60%] z-50 ${isScrolled&&"blur_effect_two"} fixed h-fit transition-all duration-300`}>
+    <div className={`top-0 pt-2 px-3 w-full sm:w-full md:w-[80%] lg:w-[60%] z-50 ${isScrolled&&"blur_effect_two"} fixed h-fit `}>
      <SearchTopBar />
      <SearchTag />
     </div>

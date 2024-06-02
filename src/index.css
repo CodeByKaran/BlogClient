@@ -101,3 +101,20 @@
 .scrollBar::-webkit-scrollbar{
    display: none;
 }
+
+
+/* CustomToast.css */
+.Toastify__toast-body {
+  text-align: left;
+  text-transform: capitalize;
+  color: #b5b5b5;
+}
+
+.Toastify__close-button {
+  margin: 6px 6px 0px 0px;
+}
+
+.Toastify__toast {
+  background-color: #000000ff; 
+}
+
