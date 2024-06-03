@@ -31,7 +31,7 @@ export default function Card({
   }
 
   return (
-    <div className="border-[0.8px] border-gray-500/20 rounded w-[95%] sm:w-[95%] md:w-[80%] lg:w-[55%] mt-4 mb-16 shadow-md shadow-slate-900 max-h-fit pb-2">
+    <div className="border-[0.8px] border-gray-500/20 rounded w-[95%] sm:w-[95%] md:w-[80%] lg:w-[55%] mt-4 mb-9 shadow-md shadow-slate-900 max-h-fit pb-2 ">
       <div className="flex items-center justify-between select-none p-2">
         <div className="w-fit h-fit flex">
           <span className="w-[30px] h-[30px] rounded-full bg-gradient-to-br from-pink-300 to-red-300 overflow-hidden bg-cover object-cover p-1">
@@ -98,7 +98,7 @@ export default function Card({
           }}
         />
        </button>
-      <button className="w-[calc(100%/3.5)] bg-green-500 p-1 font-bold text-[12px]  rounded-full m-1 flex items-center justify-center relative h-[32px]" >
+      <button className="w-[calc(100%/3.5)] bg-green-500 p-1 font-bold text-[12px]  rounded-full m-1 flex items-center justify-center relative h-[32px]" onClick={()=>showSuccessToast("Share Clicked")}>
        <LottieIcon
         id = "boyoxams"
         style={{

@@ -102,8 +102,6 @@
    display: none;
 }
 
-
-/* CustomToast.css */
 .Toastify__toast-body {
   text-align: left;
   text-transform: capitalize;
@@ -118,3 +116,30 @@
   background-color: #000000ff; 
 }
 
+@media only screen and (min-width: 600px)  {
+   .blur_effect::before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(9px);
+      background: rgba(113,112,112,0.450);
+      z-index: -1;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+   }
+}
+
+.beforeGradient{
+   position: relative;
+}
+.beforeGradient::before{
+   content: "";
+   position: absolute;
+   height: 100%;
+   inset: 0;
+   width: 100%;
+   background: linear-gradient(to top,#666666a2,#9a9a9a6a);
+}

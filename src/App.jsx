@@ -13,13 +13,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
+   
   return (
     <center className="p-2 flex flex-col items-center">
       <ToastContainer
         position="top-center"
         autoClose={3500}
         hideProgressBar={false}
-        newestOnTop={false}
+        newestOnTop={true}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss

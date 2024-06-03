@@ -1,4 +1,4 @@
-import { Bounce,toast } from "react-toastify";
+import { Bounce,Slide,toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const config = {
@@ -10,7 +10,7 @@ const config = {
   draggable: true,
   progress: undefined,
   theme: "dark",
-  transition: Bounce
+  transition: Slide
 };
 
 let activeId = null

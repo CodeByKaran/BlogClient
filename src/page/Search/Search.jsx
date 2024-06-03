@@ -20,7 +20,7 @@ export default function Search() {
    
    
   return (
-    <div className="text-white w-full sm:w-full md:w-[80%] lg:w-[60%] overflow-y-scroll flex flex-col items-center">
+    <div className="text-white w-full sm:w-full md:w-[80%] lg:w-[60%] overflow-y-scroll flex flex-col items-center scrollBar pb-[76px]">
     <div className={`top-0 pt-2 px-3 w-full sm:w-full md:w-[80%] lg:w-[60%] z-50 ${isScrolled&&"blur_effect_two"} fixed h-fit `}>
      <SearchTopBar />
      <SearchTag />

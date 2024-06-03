@@ -8,7 +8,7 @@ const ShowUserList = ({
    
    
   return (
-    <ul className="w-full sm:w-full md:w-[90%] lg:w-[85%] mt-1 pb-16">
+    <ul className="w-full sm:w-full md:w-[90%] lg:w-[85%] mt-1">
       {data.length?
          data.map((e, i) => 
          <UserList key={i} 

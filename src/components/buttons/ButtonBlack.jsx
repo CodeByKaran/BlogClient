@@ -17,7 +17,7 @@ export default function ButtonBlack({ text = "Button",
 
   return (
     <button
-      className={`p-2 rounded shadow-lg border border-gray-600 bg-black font-medium text-slate-50 min-w-fit h-fit transition-all duration-300 ${
+      className={`p-2 rounded shadow-lg border border-gray-600 bg-black font-medium text-slate-50 min-w-fit h-fit transition-all duration-300  select-none ${
         pressed &&
         "bg-gray-100 text-slate-900 shadow-2xl shadow-indigo-400"
       }`}
