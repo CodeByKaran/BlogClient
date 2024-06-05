@@ -1,11 +1,25 @@
-import React from 'react'
+import React,{useState} from 'react'
 import AppTitle from "../app_title/AppTitle.jsx"
 import Cross from "../../assets/Cross.svg"
 
 const HeroUser = () => {
+   
+   const [isScrolled, setisScrolled] = useState(0)
+   
+   window.addEventListener('scroll', () => {
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    if(scrollPosition>=20){
+     setisScrolled(true)
+     }else{
+     setisScrolled(false)
+    }
+ });
+   
+   
   return (
-    <div className="w-full pl-[0.45rem] pr-3 py-2 h-fit flex flex-col items-start relative">
-      <div className="w-7 h-7 p-1 overflow-hidden object-cover absolute top-2 right-2 flex justify-center items-center flex-col">
+    <div className={`w-full sm:w-full md:w-[80%] lg:w-[60%] h-fit fixed top-0 left-0 right-0 px-1 py-2 m-auto ${isScrolled&&"blur_effect_two"}   `}>
+    <div className={`w-full pl-[0.45rem] pr-3 py-2 h-fit flex flex-col items-start relative  pb-3`}>
+      <div className=" w-7 h-7 p-1 overflow-hidden object-cover absolute top-2 right-2 flex justify-center items-center flex-col">
         <img src={Cross} className="w-full h-full"/>
       </div>
      <div className="flex justify-start items-baseline  h-fit leading-none">  
@@ -16,6 +30,7 @@ const HeroUser = () => {
       </div>
      <h3 className="text-start text-gray-300  text-[1rem] font-semibold flex relative w-fit ">Happy Posting By <span className="absolute left-[105%] top-[20%] min-w-[100px] ">{<AppTitle stylishtext={false}/>}</span>
      </h3>
+    </div>
     </div>
   )
 }

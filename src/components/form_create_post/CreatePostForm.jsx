@@ -3,6 +3,7 @@ import DesginedTextArea from "../designed_textarea/DesginedTextArea.jsx"
 import VerticalSpacer from "../../components/spacer/VerticalSpacer.jsx"
 import SpecialInputField from "../../components/special_input_field/SpecialInputField.jsx"
 import Camera from "../../assets/Camera.svg"
+import GradientButton from "../buttons/GradientButton.jsx"
 
 const CreatePostForm = () => {
    const titletRef = useRef()
@@ -10,7 +11,7 @@ const CreatePostForm = () => {
    const contentRef = useRef()
    
   return (
-    <div className="w-full mt-14">
+    <form className="w-full mt-14 scrollBar">
       <DesginedTextArea 
        ref = {titletRef}
        label = "What's You Feel "
@@ -32,7 +33,9 @@ const CreatePostForm = () => {
        />
        <VerticalSpacer h="45px"/>
        <SpecialInputField svg={Camera} ref={contentRef}/>
-    </div>
+      <VerticalSpacer h="25px"/>
+       <GradientButton />
+    </form>
   )
 }
 
