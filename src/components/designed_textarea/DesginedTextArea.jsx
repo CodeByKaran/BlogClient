@@ -2,11 +2,12 @@ import React, { forwardRef, useState } from "react";
 import { autoHeight } from "../../utils/ResizeTextarea.js";
 
 const DesginedTextArea = forwardRef(
-  ({ style = {}, label = "Label", hint = "placeholder", rows = "1" }, ref) => {
+  ({ style = {}, label = "Label", hint = "placeholder", rows = "1" ,val="",setvalue=()=>{}}, ref) => {
     const [showScrollBar, setShowScrollBar] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
     const handleInput = element => {
+       setvalue(element.value)
       let isFullHieght = autoHeight(
         element,
         Number(element.style.maxHeight.split("p")[0])
@@ -46,6 +47,7 @@ const DesginedTextArea = forwardRef(
           onInput={() => handleInput(ref?.current)}
           onBlur={handleBlur}
           onFocus={handleFocus}
+          value = {val}
         />
       </div>
     );

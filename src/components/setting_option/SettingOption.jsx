@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import LottieIcon from "../../components/lottie/LottieIcon.jsx"
 
 const SettingOption = ({
@@ -8,10 +8,18 @@ const SettingOption = ({
    settingname = "Accounts",
    options = ["login","signup","logout","delete","private"]
 }) => {
+   
+   const [pressed, setPressed] = useState(false)
+   
+   const handleOptionClick=()=>{
+      setPressed(true)
+      setTimeout(()=>setPressed(false),300)
+   }
+   
   return (
     <>
-    <div className="w-full flex justify-between items-center  h-[70px] px-2 select-none">
-      <div className="w-fit self-center flex items-center justify-center object-cover overflow-hidden">
+    <div className="w-full flex justify-between items-center  h-[70px] px-2 select-none active:bg-gray-500 transition ease-in-out duration-200" onClick={handleOptionClick}>
+      <div className={`w-fit self-center flex items-center justify-center object-cover overflow-hidden transition-all ease-in duration-300 ${pressed&&"scale-110"} `}>
       {imgsvg?
        <img src={imgsvg} className="w-9 h-9"/>:
        <LottieIcon 
