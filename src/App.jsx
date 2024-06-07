@@ -11,6 +11,7 @@ import { Routes, Route } from "react-router-dom";
 import ShowNav from "./components/to-show-nav/ShowNav.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ShowBottomNav from "./components/to_show_bottom_nav/ShowBottomNav.jsx"
 
 export default function App() {
    
@@ -38,7 +39,9 @@ export default function App() {
         <Route path="create-post" element={<CreatePost />} />
         <Route path="settings" element={<Settings />} />
       </Routes>
-      <BottomNav />
+      <ShowBottomNav>
+        <BottomNav />
+      </ShowBottomNav>
     </center>
   );
 }
