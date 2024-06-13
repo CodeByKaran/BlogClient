@@ -1,12 +1,17 @@
 import React,{forwardRef} from 'react'
 import LottieIcon from "../lottie/LottieIcon.jsx"
+import useCustomNavigate from "../../hooks/useCustomNavigate.js"
 
 const SearchTopBar=forwardRef(({
    fun = ()=>{}
 },ref)=>{
+   const navigate = useCustomNavigate()
+   const handleBackNavigation=()=>{
+      navigate("/",true)
+   }
   return (
     <div className="px-1 py-1 w-full  flex items-center pt-1 ">
-      <div className="w-[10%] h-[35px] rotate-180 rounded-full p-1 mr-2">
+      <div className="w-[10%] h-[35px] rotate-180 rounded-full p-1 mr-2" onClick={handleBackNavigation}>
        <LottieIcon 
          id = "whtfgdfm"
          stroke = "bold"

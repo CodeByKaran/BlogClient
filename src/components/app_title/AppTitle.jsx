@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 const AppTitle = ({ 
    title="Do BloG",
    delay = 100 ,
-   stylishtext = true
+   stylishtext = true,
+   style
 }) => {
   const [displayedTitle, setDisplayedTitle] = useState('D');
 
@@ -24,7 +25,7 @@ const AppTitle = ({
 
   return (
     <div className="w-fit h-fit bg-gradient-to-br from-[#bf60ee] to-[#e83d63] bg-clip-text flex ">
-     <h2 className={`text-transparent ${stylishtext&&"logoFont"} text-left text-[25px] `}>{displayedTitle}</h2>
+     <h2 className={`text-transparent ${stylishtext&&"logoFont"} text-left text-[25px] `} style={style}>{displayedTitle}</h2>
     </div>
   );
 };

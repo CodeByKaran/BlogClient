@@ -7,71 +7,85 @@ import LottieIcon from "../lottie/LottieIcon.jsx"
 import { showSuccessToast,showInfoToast,showErrorToast,showWarnToast } from "../../utils/ShowToast.js";
 
 export default function Card({
-  contentDec = "In the heart of a bustling city, a small cafe stood quietly on a cobblestone street, its warm glow inviting passersby. The aroma of freshly brewed coffee wafted through the air, mingling with the scent of baked pastries. Inside, the walls were adorned with vintage posters and shelves lined with books, creating an ambiance of timeless charm. The barista, an elderly man with a twinkle in his eye, greeted each customer with a friendly nod and a knowing smile."
+  avatar = HumanIcon,
+  username= "unknown",
+  followers = "",
+  isfollowed = "",
+  contentdec="",
+  content = Sample,
+  likes = "",
+  comment = ""
 }) {
   const [overContent, setoverContent] = useState(true);
   
    const [moreClick, setmoreClick] = useState(false)
 
   useEffect(() => {
-    if (contentDec.length > 120) {
+     
+    if (contentdec.length > 120) {
       setoverContent(true);
     } else {
       setoverContent(false);
     }
-  }, [contentDec]);
+  }, [contentdec]);
   
   const handleMoreClick=()=>{
      setmoreClick(!moreClick)
-     setoverContent(!overContent)
+     //setoverContent(!overContent)
   }
   
   const handleLike=()=>{
-     showErrorToast("You Liked Karan007")
+     showSuccessToast(`you liker ${username}`)
   }
 
   return (
     <div className="border-[0.8px] border-gray-500/20 rounded w-[95%] sm:w-[95%] md:w-[80%] lg:w-[55%] mt-4 mb-9 shadow-md shadow-slate-900 max-h-fit pb-2 ">
       <div className="flex items-center justify-between select-none p-2">
         <div className="w-fit h-fit flex">
-          <span className="w-[30px] h-[30px] rounded-full bg-gradient-to-br from-pink-300 to-red-300 overflow-hidden bg-cover object-cover p-1">
-            <img src={HumanIcon} className="w-[100%] h-[100%] " />
+          <span className="w-[30px] h-[30px] rounded-full bg-gradient-to-br from-pink-300 to-red-300 overflow-hidden bg-cover object-cover ">
+            <img src={avatar} className="w-[100%] h-[100%] brightness-125 object-cover" />
           </span>
           <div className="flex flex-col items-center justify-center w-fit h-fit text-gray-200  pl-2 leading-none">
-            <h2 className="text-start text-[15px] font-bold w-full">Karan</h2>
-            <p className="text-[13px] font-normal">Followers • 126k</p>
+            <h2 className="text-start text-[15px] font-bold w-full">{username}</h2>
+            <p className="text-[13px] font-normal">Followers • {followers}</p>
           </div>
         </div>
-        <ButtonBlack text="Follow" width="90px" radius="25px" size="14px" />
+        <ButtonBlack text={`${isfollowed?"unfollow":"follow"}`} width="90px" radius="25px" size="14px" />
       </div>
 
       <p className={`overflow-clip min-h-[30px] max-h-fit leading-[18px] font-[400] text-[15px] text-gray-300 w-full text-start mt-2 ${moreClick&&"h-fit"} select-none p-2`}>
         {overContent ? (
           <>
-            {contentDec.slice(0, 110)}
-            <span className="text-gray-100 font-semibold select-none   " onClick={handleMoreClick}> ..More</span>
+            {moreClick?
+            <span className="text-gray-300 font- select-none leading-[18px] font-[400] text-[15px]" onClick={handleMoreClick}> {contentdec} <strong>Less</strong></span>:
+            (
+         <>
+            {contentdec.slice(0, 110)}
+           <span className="text-gray-100 font-semibold select-none   " onClick={handleMoreClick}> ..More</span>
+           </>
+           )
+            }
           </>
         ) : (
           <>
-          {contentDec}
-         <span className="text-gray-100 font-semibold select-none animate-pulse" onClick={handleMoreClick}> Less</span>
+          {contentdec}
           </>
         )}
       </p>
       
-      <div className="w-full mt-[8px] md:h-[220px] lg:h-[260px] rounded-b overflow-hidden relative">
-       <img src={Sample} className="w-full h-full object-cover" />
-       <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-slate-900 to-35% to-transparent text-end text-gray-400 font-bold text-[12px] pr-3 pb-1 flex items-end justify-end">
+      <div className="w-full  rounded-b overflow-hidden relative max-h-[350px] min-h-[160px]">
+       <img src={`${content.replace("/upload/", "/upload/c_fill,q_100/")}`} className="w-full object-center" alt="Content" />
+       <div className="absolute top-0 left-0 w-full h-full  text-end text-gray-400 font-bold text-[12px] pr-3 pb-1 flex items-end justify-end">
         30 • 6 • 2024
        </div>
       </div>
       
    <div className="w-full px-3 flex justify-start mt-3">
       <div className="w-fit rounded-full bg-gradient-to-r from-[#e84d4d] to-[#e957ad]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 " >
-           116k Likes
+           {likes} Likes
       </div>
     <div className="w-fit rounded-full bg-gradient-to-r from-[#575cd9] to-[#ea5c90]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ml-2">
-           20k Comments
+           {comment} Comments
       </div>
     <div className="w-fit rounded-full bg-gradient-to-r from-[#4890f1] to-[#a37af4]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ml-2">
            40 Share

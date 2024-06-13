@@ -6,10 +6,13 @@ import Camera from "../../assets/Camera.svg"
 import GradientButton from "../buttons/GradientButton.jsx"
 import useLocalStorage from "../../hooks/useLocalStorage.js"
 
+
 const CreatePostForm = () => {
    const titleRef= useRef()
    const tagsRef= useRef()
    const contentRef= useRef()
+   
+   
    
    let [title,settitle] = useLocalStorage("title","")
    

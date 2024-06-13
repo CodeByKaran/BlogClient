@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-   user : null
+   blogstate : null
 }
 
 export const postSlice = createSlice({
@@ -9,7 +9,7 @@ export const postSlice = createSlice({
   initialState,
   reducers: {
     savePost:(state,action)=>{
-       state.user = action.payload
+       state.blogstate = action.payload
     }
   },
 })
