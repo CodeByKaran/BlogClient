@@ -4,6 +4,11 @@ import {ImagePreviewer} from "../../utils/ImagePreviewer.js"
 const SpecialInputField = forwardRef(({
    svg = {},
 },ref)=> {
+  
+  const clearValue=()=>{
+     ref.current.value = ""
+  }
+   
   return (
     <div className="relative w-[90%] h-64 overflow-hidden">
       <input

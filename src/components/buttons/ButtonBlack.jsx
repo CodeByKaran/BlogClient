@@ -9,10 +9,10 @@ export default function ButtonBlack({ text = "Button",
   const [pressed, setPressed] = useState(false);
 
   const makeHoverEffect = () => {
-    fun();
-    setPressed(false);
+     console.log(text)
     setPressed(true);
     setTimeout(() => setPressed(false), 300);
+    fun();
   };
 
   return (

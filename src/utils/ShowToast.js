@@ -3,14 +3,20 @@ import "react-toastify/dist/ReactToastify.css";
 
 const config = {
   position: "top-center",
-  autoClose: 5000,
+  autoClose: 2000,
   hideProgressBar: false,
+  newestOnTop : true,
   closeOnClick: true,
+  rtl: false,
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
   theme: "dark",
-  transition: Slide
+  transition: Slide,
+  hideProgressBar: true,
+  swipeToClose: true,
+  closeOnSwipe: true,
+  draggablePercent: 30
 };
 
 let activeId = null

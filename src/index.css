@@ -83,7 +83,6 @@
 }
 
 
-
 .divider{
    position: relative;
 }
@@ -106,16 +105,25 @@
 
 .Toastify__toast-body {
   text-align: left;
-  text-transform: capitalize;
+  text-transform: lowercase;
   color: #b5b5b5;
+  position: absolute;
+  top: 2px;
+  bottom: 0;
+  margin: auto;
 }
 
 .Toastify__close-button {
-  margin: 6px 6px 0px 0px;
+  position: absolute;
+  right: 15px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .Toastify__toast {
-  background-color: #000000ff; 
+  border-radius: 25px;
+  margin: 13px;
 }
 
 @media only screen and (min-width: 600px)  {
@@ -137,6 +145,7 @@
 .beforeGradient{
    position: relative;
 }
+
 .beforeGradient::before{
    content: "";
    position: absolute;
@@ -144,4 +153,38 @@
    inset: 0;
    width: 100%;
    background: linear-gradient(to top,#666666a2,#9a9a9a6a);
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  background-color: #ec71a160 !important;
+  -webkit-box-shadow: 0 0 0px 1000px #ec71a160 inset !important;
+  box-shadow: 0 0 0px 1000px #ec71a160 inset !important;
+
+  color: #e1e1e1 !important;
+}
+
+.slide_animation{
+   animation: slide 300ms ease-in 0s 1;
+}
+
+@keyframes slide{
+   0%{
+      transform: translateX(40%);
+      opacity: 0.6;
+   }
+   50%{
+      transform: translateX(70%);
+      opacity: 0.1;
+   }
+   75%{
+      transform: translateX(-60%);
+      opacity: 0.5;
+   }
+   100%{
+      transform: translateX(0);
+      opacity: 1;
+   }
 }

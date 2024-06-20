@@ -52,7 +52,6 @@ const LoginForm = () => {
            navigate("/",true)
         }else{
            showErrorToast(data.message)
-           passRef.current.focus()
         }
      })
      .catch(error=>showErrorToast(`${error}`))

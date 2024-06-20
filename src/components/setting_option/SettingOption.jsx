@@ -6,7 +6,8 @@ const SettingOption = ({
    imgsvg,
    colors = ["#1176e3","#f4f24d"],
    settingname = "Accounts",
-   options = ["login","signup","logout","delete","private"]
+   options = ["login","signup","logout","delete","private"],
+   click = ()=>{}
 }) => {
    
    const [pressed, setPressed] = useState(false)
@@ -14,6 +15,7 @@ const SettingOption = ({
    const handleOptionClick=()=>{
       setPressed(true)
       setTimeout(()=>setPressed(false),300)
+      click()
    }
    
   return (

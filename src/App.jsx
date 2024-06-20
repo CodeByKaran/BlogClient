@@ -13,28 +13,25 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ShowBottomNav from "./components/to_show_bottom_nav/ShowBottomNav.jsx"
 import Login from "./page/login/Login.jsx"
-
+import {useDispatch} from "react-redux"
+import {FetchData} from "./utils/Fetch.js"
+import {setUser} from "./redux/slice/LoggedSlice/LoggedUserSlice.js"
 
 
 export default function App() {
-   const navigate = useNavigate()
+   const dispatch = useDispatch()
    
+   useEffect(()=>{
+      FetchData("/api/v1/user/fetch")
+      .then(data=>{
+         dispatch(setUser(data.data))
+      })
+      .catch(error=>console.log(error))
+   },[])
    
   return (
     <center className="flex flex-col items-center">
-      <ToastContainer
-        position="top-center"
-        autoClose={3500}
-        hideProgressBar={false}
-        newestOnTop={true}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="dark"
-        transition:Bounce
-      />
+      <ToastContainer/>
       <ShowNav>
         <TopNav />
       </ShowNav>

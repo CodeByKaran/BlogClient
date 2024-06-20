@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from "react";
 import { autoHeight } from "../../utils/ResizeTextarea.js";
 
 const DesginedTextArea = forwardRef(
-  ({ style = {}, label = "Label", hint = "placeholder", rows = "1" ,val="",setvalue=()=>{}}, ref) => {
+  ({ style = {}, label = "Label", hint = "placeholder", rows = "1" ,val="",setvalue=()=>{},showLabel=true}, ref) => {
     const [showScrollBar, setShowScrollBar] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
 
@@ -26,6 +26,7 @@ const DesginedTextArea = forwardRef(
 
     return (
       <div className="w-full flex flex-col items-center">
+     {showLabel &&
         <p
           className={`w-[90%] leading-none text-[1.1rem] text-start py-1 ${
             isFocused ? "text-[#e81a7d]" : "text-gray-300"
@@ -33,6 +34,7 @@ const DesginedTextArea = forwardRef(
         >
           {label}
         </p>
+     }
         <textarea
           className={`w-[90%] resize-none bg-inherit pl-3 text-gray-200 mt-2 py-2 pr-1 border rounded border-gray-300/30 text-[1rem] border-r-4 border-r-pink-400 outline-none ${
             showScrollBar ? "overflow-y-auto" : "overflow-clip"
@@ -44,7 +46,7 @@ const DesginedTextArea = forwardRef(
           placeholder={hint}
           style={style}
           ref={ref}
-          onInput={() => handleInput(ref?.current)}
+          onInput={(e) => handleInput(e.target)}
           onBlur={handleBlur}
           onFocus={handleFocus}
           value = {val}

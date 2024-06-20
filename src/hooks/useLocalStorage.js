@@ -10,6 +10,10 @@ const getSavedValue=(key,initialValue)=>{
    }
 }
 
+export const clearSavedValue=(key)=>{
+   localStorage.removeItem(key)
+}
+
 const useLocalStorage=(key,initialValue)=>{
  let [value,setvalue] = useState(()=>getSavedValue(key,initialValue))
  
