@@ -9,7 +9,7 @@ export default function ShowNav({children}){
    
    useEffect(() => {
      const URI_SPLIT = URI.pathname.split("/")
-     if(URI_SPLIT[1]=="search"||URI_SPLIT[1]=="create-post"||URI_SPLIT[1]=="settings"||URI_SPLIT[1]=="login"||URI_SPLIT[1]=="sign-up"){
+     if(URI_SPLIT[1]=="search"||URI_SPLIT[1]=="create-post"||URI_SPLIT[1]=="settings"||URI_SPLIT[1]=="login"||URI_SPLIT[1]=="sign-up"||URI_SPLIT[1]==="blog"){
         setShowNav(false)
      }else{
         setShowNav(true)

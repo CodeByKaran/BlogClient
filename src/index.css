@@ -188,3 +188,7 @@ input:-webkit-autofill:focus {
       opacity: 1;
    }
 }
+
+.inset_top_shadow{
+   box-shadow: inset 0 0px 40px -20px #73737382;
+}

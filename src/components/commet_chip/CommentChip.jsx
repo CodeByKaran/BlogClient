@@ -12,12 +12,14 @@ import {
 import Human from "../../assets/human_icon.svg"
 import {formatDate} from "../../utils/FormatData.js"
 import LottieIcon from "../lottie/LottieIcon.jsx"
+import useCustomNavigate from "../../hooks/useCustomNavigate.js"
 
 const CommentChip = ({
    sample,
    blogId,
    handleTriggerUpdateComment
 }) => {
+   const navigate = useCustomNavigate()
    const commentTextRef = useRef()
    const [comment, setComment] = useLocalStorage("commentText","")
    const [triggerAnimation,setTriggerAnimation] = useState(true)
@@ -63,12 +65,15 @@ const CommentChip = ({
      .catch(err=>showErrorToast(err))
   }
  
+  const handleNaigate=()=>{
+     navigate(`blog/${blogId}`)
+  }
 
   return (
     <div className="h-fit w-full flex flex-col items-center mt-5 relative">
       {iterComment?(
      <div className={`w-[95%] rounded  border-[.6px] border-gray-100/30 bg-inherit flex flex-col pt-2 px-2 pb-1 relative  shadow-md shadow-gray-100/10  overflow-hidden ${triggerAnimation&&"slide_animation"} `}>
-     <div className="w-5 h-5 rounded bg-inherit absolute top-2 right-2 active:bg-gray-400/50 p-1">
+     <div className="w-5 h-5 rounded bg-inherit absolute top-2 right-2 active:bg-gray-400/50 p-1" onClick={handleNaigate}>
        <img src={Resize} alt="full Screen"/>
      </div>
      <div>

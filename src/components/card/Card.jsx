@@ -176,7 +176,7 @@ export default function Card({ blog ,index,fun=()=>{},funUpdateLike=()=>{},funUp
         )}
       </p>
 
-      <div className="w-full  rounded-b overflow-hidden relative max-h-[350px] min-h-[160px]">
+      <div className="w-full  rounded-b overflow-hidden relative max-h-[350px] min-h-[160px] bg-slate-700">
         <img
           src={`${blog.contentimg.replace("/upload/", "/upload/c_fill,q_80/")}`}
           className="w-full object-center"

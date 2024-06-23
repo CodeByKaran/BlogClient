@@ -13,6 +13,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ShowBottomNav from "./components/to_show_bottom_nav/ShowBottomNav.jsx"
 import Login from "./page/login/Login.jsx"
+import SinglePost from "./page/single-post/SinglePost.jsx"
 import {useDispatch} from "react-redux"
 import {FetchData} from "./utils/Fetch.js"
 import {setUser} from "./redux/slice/LoggedSlice/LoggedUserSlice.js"
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="create-post" element={<CreatePost />} />
         <Route path="settings" element={<Settings />} />
         <Route path="login" element={<Login />} />
+        <Route path="blog/:blogId" element={<SinglePost/>} />
       </Routes>
       <ShowBottomNav>
         <BottomNav />
