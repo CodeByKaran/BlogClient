@@ -2,6 +2,7 @@ import UserPhoto from "../components/user_photo/UserPhoto.jsx"
 
 
 function ImagePreviewer(event,id) {
+   console.log(event,id)
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();

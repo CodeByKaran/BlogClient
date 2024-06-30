@@ -79,6 +79,7 @@ export default function Card({ blog ,index,fun=()=>{},funUpdateLike=()=>{},funUp
   };
    
    const handleComment=(blogId,manually=false)=>{
+      console.log(blogId)
       if(!manually && showChip){
          setShowChip(false)
          return
@@ -181,6 +182,7 @@ export default function Card({ blog ,index,fun=()=>{},funUpdateLike=()=>{},funUp
           src={`${blog.contentimg.replace("/upload/", "/upload/c_fill,q_80/")}`}
           className="w-full object-center"
           alt="Content"
+          loading="lazy" 
         />
         <div className="absolute bottom-2 right-2 w-fit h-fit text-end text-gray-200 font-bold text-[10px] bg-slate-500/40 px-2 py-[1.5px] rounded-full">
           {formatDate(blog.createdAt.toString())}

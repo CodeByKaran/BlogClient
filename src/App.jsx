@@ -14,6 +14,10 @@ import "react-toastify/dist/ReactToastify.css";
 import ShowBottomNav from "./components/to_show_bottom_nav/ShowBottomNav.jsx"
 import Login from "./page/login/Login.jsx"
 import SinglePost from "./page/single-post/SinglePost.jsx"
+import Blogs from "./page/blogs/Blogs.jsx"
+import Post from "./components/blogs_body/post/Post.jsx"
+import Blog from "./components/blogs_body/blog/Blog.jsx"
+import SignUp from "./page/signup/SignUp.jsx"
 import {useDispatch} from "react-redux"
 import {FetchData} from "./utils/Fetch.js"
 import {setUser} from "./redux/slice/LoggedSlice/LoggedUserSlice.js"
@@ -23,13 +27,17 @@ export default function App() {
    const dispatch = useDispatch()
    
    useEffect(()=>{
-      FetchData("/api/v1/user/fetch")
+      FetchData("/api/v1/user/fetch",{
+         method: 'GET',
+         credentials: 'include',
+      })
       .then(data=>{
          dispatch(setUser(data.data))
       })
       .catch(error=>console.log(error))
    },[])
    
+
   return (
     <center className="flex flex-col items-center">
       <ToastContainer/>
@@ -43,6 +51,11 @@ export default function App() {
         <Route path="settings" element={<Settings />} />
         <Route path="login" element={<Login />} />
         <Route path="blog/:blogId" element={<SinglePost/>} />
+       <Route path="user/blog/:userId" element={<Blogs/> }>
+        <Route path="posts" element={<Post/>} />
+        <Route path="blogs" element={<Blog />} />
+       </Route>
+       <Route path="signup" element={<SignUp />} />
       </Routes>
       <ShowBottomNav>
         <BottomNav />

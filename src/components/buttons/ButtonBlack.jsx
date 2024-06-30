@@ -4,7 +4,8 @@ export default function ButtonBlack({ text = "Button",
    fun = () => {} ,
    width ,
    radius ,
-   size
+   size,
+   style
  }) {
   const [pressed, setPressed] = useState(false);
 
@@ -25,7 +26,8 @@ export default function ButtonBlack({ text = "Button",
       style = {{
          width:`${width&&width}`,
          borderRadius:`${radius && radius}`,
-         fontSize: `${size&&size}`
+         fontSize: `${size&&size}`,
+         ...style
       }}
     >
       {text}

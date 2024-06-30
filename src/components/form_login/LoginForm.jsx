@@ -56,6 +56,10 @@ const LoginForm = () => {
      })
      .catch(error=>showErrorToast(`${error}`))
   }
+  
+  const handleNavigateSignup=()=>{
+     navigate("/signup")
+  }
    
   return (
     <div className="w-full flex flex-col items-center p-2 justify-center h-[98vh] sm:w-full md:w-[80%] lg:w-[60%]">
@@ -95,7 +99,7 @@ const LoginForm = () => {
     <VerticalSpacer h="36px" />
      <GradientButton btnText="Login"/>
     <VerticalSpacer h="75px" />
-    <p className="text-[14px] font-normal text-[#f1cede] select-none">Not Account? <strong className="underline underline-offset-2 active:no-underline">Sign Up</strong></p>
+    <p className="text-[14px] font-normal text-[#f1cede] select-none">Not Account? <strong className="underline underline-offset-2 active:no-underline" onClick={handleNavigateSignup}>Sign Up</strong></p>
     <p className="text-[14px] font-normal text-[#f1cede] select-none ">All information is end to end encrypted</p>
      </form>
      </div>

@@ -192,3 +192,36 @@ input:-webkit-autofill:focus {
 .inset_top_shadow{
    box-shadow: inset 0 0px 40px -20px #73737382;
 }
+
+.inset_top_glass_shadow{
+   box-shadow: inset 0 4px 15px -3px #edead5,0px 6px 15px -8px #ffd720; 
+}
+
+.inset_top_glass_shadow_two{
+   box-shadow: inset 0 4px 15px -5px #8fb5e2,0px 6px 15px -8px #2c88ff; 
+}
+
+.post-container {
+  position: relative;
+}
+
+.loader-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+
+.underline_with_animate{
+   animation: width 1s ease-in 1 forwards;
+}
+
+@keyframes width{
+   0%{
+      width: 0;
+      height: 0;
+   }100%{
+      width: 70%;
+      height: 24px;
+   }
+}

@@ -4,7 +4,8 @@ export default function ButtonWhite({ text = "Button",
    fun = () => {} ,
    width ,
    radius ,
-   size
+   size,
+   effect=true
  }) {
   const [pressed, setPressed] = useState(false);
 
@@ -18,7 +19,7 @@ export default function ButtonWhite({ text = "Button",
   return (
     <button
       className={`p-2 rounded shadow-lg border border-gray-600  bg-gray-100 font-medium text-black z-50 min-w-fit h-fit transition-all duration-300  select-none ${
-        pressed && "bg-slate-950 shadow-2xl text-gray-50 shadow-indigo-400"
+        pressed&&effect? "bg-slate-950 shadow-2xl text-gray-50 shadow-indigo-400":""
       } ml-1 mr-2`}
       onClick={makeHoverEffect}
       style = {{

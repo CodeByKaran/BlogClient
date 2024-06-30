@@ -13,11 +13,12 @@ import Login from "../../assets/Login.svg"
 import {useSelector} from "react-redux"
 import useCustomNavigate from "../../hooks/useCustomNavigate.js"
 import {FetchData} from "../../utils/Fetch.js"
-import {showSuccessToast} from "../../utils/ShowToast.js"
+import {showSuccessToast,showErrorToast} from "../../utils/ShowToast.js"
 
 export default function Settings() {
    
    const {userState} = useSelector(state=>state.loggedUserSlice)
+   
    const navigate = useCustomNavigate()
    
    const handleLogin=()=>{
@@ -25,12 +26,23 @@ export default function Settings() {
    }
    
    const handleLogout=()=>{
-      FetchData("/api/v1/user/log-out")
+      FetchData("/api/v1/user/log-out",{
+          method:"GET",
+          credentials: 'include',
+         })
       .then(res=>{
          showSuccessToast("Logged Out")
          navigate("/login")
          })
       .catch(err=>showErrorToast(`${err}`))
+   }
+   
+   const handleNavigateToBlogs=()=>{
+      try{
+      navigate(`/user/blog/${userState._id}`)
+      }catch(error){
+         showErrorToast("you must be logged in first!")
+      }
    }
    
   return (
@@ -40,13 +52,13 @@ export default function Settings() {
      <SettingOption 
       imgsvg={Account}
       settingname="Account"
-      click={()=>showSuccessToast("hello")}
       />
      <VerticalSpacer h="15px" />
      <SettingOption 
        imgsvg={Blog}
        options = {["personal"]}
        settingname = "My Blogs"
+       click={handleNavigateToBlogs}
       />
      <VerticalSpacer h="15px" />
      <SettingOption 
