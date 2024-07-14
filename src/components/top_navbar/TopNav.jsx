@@ -25,6 +25,7 @@ export default function TopNav() {
           src={userState&&userState.avatar}
           showname = {true}
           username = {userState?userState.username:""}
+          showBorder={false}
           />
       }
       </div>

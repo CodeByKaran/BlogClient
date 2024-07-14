@@ -111,7 +111,7 @@ const CreatePostForm = () => {
       <VerticalSpacer h="25px" />
       <GradientButton
         fun={handlePost}
-        dis={loading}
+        loading={loading}
         btnText={loading ? <Spinner style={{ borderColor: "#355af7" }} /> : "Post"}
       />
     </form>

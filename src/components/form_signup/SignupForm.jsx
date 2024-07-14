@@ -13,6 +13,7 @@ import useCustomNavigate from "../../hooks/useCustomNavigate.js"
 
 const SignupForm = () => {
   const [userImg, setUserImg] = useState(null);
+  const [loading, setLoading] = useState(false)
   const navigate = useCustomNavigate()
 
   const handleImageChange = e => {
@@ -35,15 +36,18 @@ const SignupForm = () => {
   
   const handleFormSubmit=async(e)=>{
      e.preventDefault()
+     setLoading(true)
      let formData = new FormData()
      const avatar = e.target[0].files[0]
      if(!avatar){
         showErrorToast("avatar is required !")
+        setLoading(false)
         return
      }
      const compImg = await  ImageCompressor(avatar,0.3)
      const tags = splitTags(e.target[5].value)
      if(!tags.length){
+        setLoading(false)
         showErrorToast("at least two #tags required !")
         return
      }
@@ -60,10 +64,17 @@ const SignupForm = () => {
         },
         body: formData,
       };
-
      FetchData("/api/v1/user/sign-up",config)
-     .then(res=>showSuccessToast("otp has sent to your email verify your selve!"))
-     .catch(err=>showErrorToast(err))
+     .then(res=>{
+        const userId = res.data;
+        showSuccessToast("otp has sent to your email")
+        setLoading(false)
+        navigate(`/signup/${userId}/verify`)
+     })
+     .catch(err=>{
+        showErrorToast(err)
+        setLoading(false)
+     })
   }
   
   const handleNavigateLogin=()=>{
@@ -105,7 +116,7 @@ const SignupForm = () => {
         </span>
         </div>
       <VerticalSpacer h="60px" />
-       <div className="w-[90%] flex flex-col">
+       <div className="w-[90%] sm:w-[90%] md:w-[75%] lg:w-[65%] flex flex-col">
         <EmailInput 
          id="signup_fullname"
          label="Fullname"
@@ -135,7 +146,7 @@ const SignupForm = () => {
         <EmailInput 
          id="signup_email"
          label="Email"
-         type="text"
+         type="email"
          hint="example@.com"
          bg={true}
          name="email"
@@ -203,12 +214,10 @@ const SignupForm = () => {
         style={{
            alignSelf:"center"
         }}
+        loading={loading}
        />
       </div>
       </form>
-      <VerticalSpacer h="45px"/>
-      <div className="w-[80%] self-center border border-gray-400/50 rounded-full">
-      </div>
     </div>
   );
 };

@@ -23,7 +23,7 @@ const FetchBlog = () => {
   const fetchBlogs = useCallback(async (pageNum) => {
     try {
       const response = await fetch(
-        `/api/v1/blog/fetch/all?page=${pageNum || page}&pageSize=3`
+        `/api/v1/blog/fetch/all?page=${pageNum || page}&pageSize=10`
       );
       const result = await response.json();
       if (result.data && Array.isArray(result.data.blogs)) {
