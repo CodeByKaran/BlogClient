@@ -5,7 +5,7 @@ const VerticalSpacer = ({
    bg = ""
 }) => {
   return (
-    <div className="w-full bg-inherit" style={{height:h,background:bg&&bg}}>
+    <div className="w-full bg-inherit z-50" style={{height:h,background:bg&&bg}}>
     </div>
   )
 }

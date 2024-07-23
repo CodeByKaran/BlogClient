@@ -33,7 +33,7 @@ export default function Card({
   const [sampleComments, setSampleComments] = useState([]);
 
   useEffect(() => {
-    if (blog?.content.length > 120) {
+    if (blog?.content?.length > 120) {
       setoverContent(true);
     } else {
       setoverContent(false);
@@ -41,7 +41,7 @@ export default function Card({
   }, [blog?.content]);
 
   useEffect(() => {
-    setText(blog.isFollowed ? "UnFollow" : "Follow");
+    setText(blog?.isFollowed ? "UnFollow" : "Follow");
   }, [blog.isFollowed]);
 
   const handleMoreClick = () => {
@@ -85,7 +85,6 @@ export default function Card({
   };
 
   const handleComment = (blogId, manually = false) => {
-    console.log(blogId);
     if (!manually && showChip) {
       setShowChip(false);
       return;
@@ -104,6 +103,7 @@ export default function Card({
   };
 
   const handleSave = blogId => {
+    console.log(blog)
     if (blog.isSaved) {
       FetchData(`/api/v1/save/blog/remove/${blogId}`, { method: "PUT" })
         .then(res => {
@@ -170,7 +170,7 @@ export default function Card({
               </span>
             ) : (
               <>
-                {blog.content.slice(0, 110)}
+                {blog.content?.slice(0, 110)}
                 <span
                   className="text-gray-100 font-semibold select-none   "
                   onClick={handleMoreClick}
@@ -188,14 +188,14 @@ export default function Card({
 
       <div className="w-full  rounded-b overflow-hidden relative max-h-[350px] min-h-[200px] bg-gray-700/10">
         <img
-          src={`${blog.contentimg.replace("/upload/", "/upload/c_fill,q_auto/")}`}
-          srcSet={`${blog.contentimg.replace(
+          src={`${blog.contentimg?.replace("/upload/", "/upload/c_fill,q_auto/")}`}
+          srcSet={`${blog.contentimg?.replace(
             "/upload/",
             "/upload/c_fill,q_auto,w_200/"
-          )} 200w, ${blog.contentimg.replace(
+          )} 200w, ${blog.contentimg?.replace(
             "/upload/",
             "/upload/c_fill,q_auto,w_400/"
-          )} 400w, ${blog.contentimg.replace(
+          )} 400w, ${blog.contentimg?.replace(
             "/upload/",
             "/upload/c_fill,q_auto,w_800/"
           )} 800w`}
@@ -205,19 +205,19 @@ export default function Card({
           loading="lazy"
         />
         <div className="absolute bottom-2 right-2 w-fit h-fit text-end text-gray-200 font-bold text-[10px] bg-slate-500/40 px-2 py-[1.5px] rounded-full">
-          {formatDate(blog.createdAt.toString())}
+          {formatDate(blog.createdAt?.toString())}
         </div>
       </div>
 
       <div className="w-full px-3 flex justify-start mt-3">
         <div className="w-fit rounded-full bg-gradient-to-r from-[#e84d4d] to-[#e957ad]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ">
-          {blog.likes} Likes
+          {blog?.likes} Likes
         </div>
         <div className="w-fit rounded-full bg-gradient-to-r from-[#575cd9] to-[#ea5c90]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ml-2">
-          {blog.comments} Comments
+          {blog?.comments} Comments
         </div>
         <div className="w-fit rounded-full bg-gradient-to-r from-[#4890f1] to-[#a37af4]  text-[11px] font-semibold text-gray-300 leading-none px-2 py-1 ml-2">
-          {blog.saves} saves
+          {blog?.saves} saves
         </div>
       </div>
 
@@ -225,14 +225,14 @@ export default function Card({
         <button
           className="w-[calc(100%/3.5)] bg-blue-500 p-1 font-bold text-[12px] divider rounded-full m-1 flex items-center justify-center relative h-[32px]"
           onClick={
-            blog.isLiked
+            blog?.isLiked
               ? () => handleRemoveLike(blog._id)
               : () => handleLike(blog._id)
           }
         >
           <LottieIcon
             id="hbzwsetw"
-            color={blog.isLiked ? "#ec4a7f" : "#d7d7d7"}
+            color={blog?.isLiked ? "#ec4a7f" : "#d7d7d7"}
             style={{
               width: "100%",
               height: "25px",
@@ -242,7 +242,7 @@ export default function Card({
         </button>
         <button
           className="w-[calc(100%/3.5)] bg-yellow-500 p-1 font-bold text-[12px] divider rounded-full m-1 flex items-center justify-center h-[32px]"
-          onClick={() => handleComment(blog._id)}
+          onClick={() => handleComment(blog?._id)}
         >
           <LottieIcon
             style={{
@@ -254,7 +254,7 @@ export default function Card({
         </button>
         <button
           className="w-[calc(100%/3.5)] bg-green-500 p-1 font-bold text-[12px]  rounded-full m-1 flex items-center justify-center relative h-[32px]"
-          onClick={() => handleSave(blog._id)}
+          onClick={() => handleSave(blog?._id)}
         >
           <LottieIcon
             id="rwtswsap"
@@ -263,14 +263,14 @@ export default function Card({
               height: "25px",
               borderRadius: "25px"
             }}
-            color={blog.isSaved ? "#ec4a7f" : "#d7d7d7"}
+            color={blog?.isSaved ? "#ec4a7f" : "#d7d7d7"}
           />
         </button>
       </div>
       {showChip && (
         <CommentChip
           sample={sampleComments}
-          blogId={blog._id}
+          blogId={blog?._id}
           handleTriggerUpdateComment={handleTriggerUpdateComment}
         />
       )}

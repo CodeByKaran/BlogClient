@@ -19,4 +19,4 @@ const LottieIcon = ({
   );
 };
 
-export default LottieIcon;
+export default React.memo(LottieIcon);

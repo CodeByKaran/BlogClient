@@ -10,7 +10,7 @@ const ShowUserList = ({
    loading = false
 }) => {
    
-   console.log(loading)
+   
    
   return (
     <InfiniteScroll

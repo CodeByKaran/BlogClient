@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import humanIcon from "../../assets/human_icon.svg"
 
-export default function UserPhoto({
+function UserPhoto({
    src=humanIcon,
    username = "Karan Kumar",
    fun = ()=>{},
@@ -42,3 +42,6 @@ export default function UserPhoto({
      </div>
   )
 }
+
+
+export default React.memo(UserPhoto)

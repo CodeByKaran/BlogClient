@@ -23,6 +23,16 @@ import { useDispatch } from "react-redux";
 import { FetchData } from "./utils/Fetch.js";
 import { setUser } from "./redux/slice/LoggedSlice/LoggedUserSlice.js";
 import { BlogProvider } from "./context/BlogContext.jsx";
+import SaveBlogs from "./page/save_blogs/SaveBlogs.jsx"
+import Account from "./page/account/Account.jsx"
+import Follow from "./page/follow/Follow.jsx"
+import Profile from "./page/profile/Profile.jsx"
+import PrivacyAbout from "./page/privacy_about/PrivacyAbout.jsx"
+import Follower from "./components/follow/Follower.jsx"
+import Following from "./components/follow/Following.jsx"
+
+
+
 
 export default function App() {
   const dispatch = useDispatch();
@@ -49,7 +59,13 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="search" element={<Search />} />
           <Route path="create-post" element={<CreatePost />} />
-          <Route path="settings" element={<Settings />} />
+          <Route path="settings" element={<Settings />} >
+            <Route path="accounts" element={<Account />} />
+            <Route path="following-follower" element={<Follow />}>
+             <Route path="follower" element={<Follower/>} />
+             <Route path="following" element={<Following/>} />
+            </Route>
+          </Route>
           <Route path="login" element={<Login />} />
           <Route path="blog/:blogId" element={<SinglePost />} />
           <Route path="user/blog/:userId" element={<Blogs />}>
@@ -58,7 +74,10 @@ export default function App() {
           </Route>
           <Route path="signup" element={<SignUp />} />
           <Route path="signup/:id/verify" element={<Verify />} />
-        </Routes>
+          <Route path="saved/blog" element={<SaveBlogs />} />
+          <Route path="settings/privacy-about" element={<PrivacyAbout />}/>   
+          <Route path="settings/profile" element={<Profile />}/>
+          </Routes>
         <ShowBottomNav>
           <BottomNav />
         </ShowBottomNav>

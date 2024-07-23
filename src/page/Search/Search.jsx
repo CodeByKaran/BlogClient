@@ -5,7 +5,7 @@ import SearchTag from "../../components/search_tags/SearchTag.jsx";
 import { FetchData } from "../../utils/Fetch.js";
 import { showSuccessToast, showErrorToast } from "../../utils/ShowToast.js";
 
-export default function Search() {
+function Search() {
   const [slicedUser, setSlicedUser] = useState([]);
   const [totalUser, setTotalUser] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -133,3 +133,6 @@ export default function Search() {
     </div>
   );
 }
+
+
+export default React.memo(Search)

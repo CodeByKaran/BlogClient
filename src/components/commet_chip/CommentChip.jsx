@@ -13,6 +13,9 @@ import Human from "../../assets/human_icon.svg"
 import {formatDate} from "../../utils/FormatData.js"
 import LottieIcon from "../lottie/LottieIcon.jsx"
 import useCustomNavigate from "../../hooks/useCustomNavigate.js"
+import {useLocation,useParams} from "react-router-dom"
+
+
 
 const CommentChip = ({
    sample,
@@ -23,6 +26,8 @@ const CommentChip = ({
    const commentTextRef = useRef()
    const [comment, setComment] = useLocalStorage("commentText","")
    const [triggerAnimation,setTriggerAnimation] = useState(true)
+   const loacation = useLocation()
+   const {userId} = useParams()
    
    const [iterComment,setIterComment] = useState({})
    
@@ -66,7 +71,12 @@ const CommentChip = ({
   }
  
   const handleNaigate=()=>{
-     navigate(`blog/${blogId}`)
+     const path = loacation.pathname.split("/")
+     if(path.includes("blog")){
+        navigate(`/blog/${blogId}`)
+     }else{
+        navigate(`blog/${blogId}`)
+     }
   }
 
   return (

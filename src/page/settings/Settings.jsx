@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import HeroUserSetting from '../../components/hero_user_setting/HeroUserSetting.jsx';
 import VerticalSpacer from '../../components/spacer/VerticalSpacer.jsx';
 import SettingOption from '../../components/setting_option/SettingOption.jsx';
@@ -15,15 +15,22 @@ import useCustomNavigate from '../../hooks/useCustomNavigate.js';
 import { FetchData } from '../../utils/Fetch.js';
 import { showSuccessToast, showErrorToast } from '../../utils/ShowToast.js';
 import Confirm from '../../components/confirm/Confirm.jsx';
+import {Outlet,useLocation} from "react-router-dom";
 
-export default function Settings() {
+
+
+function Settings() {
   const { userState } = useSelector(state => state.loggedUserSlice);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showOptions, setshowOptions] = useState(true)
   const navigate = useCustomNavigate();
+  const location = useLocation()
+  
 
   const handleLogin = () => {
     navigate('/login');
   };
+  
 
   const handleLogout = () => {
     FetchData('/api/v1/user/log-out', {
@@ -36,6 +43,7 @@ export default function Settings() {
       })
       .catch(err => showErrorToast(`${err}`));
   };
+  
 
   const handleNavigateToBlogs = () => {
     try {
@@ -45,6 +53,7 @@ export default function Settings() {
     }
   };
 
+
   const handleConfirmLogout = () => {
     if(userState)
     setShowConfirm(true);
@@ -52,14 +61,35 @@ export default function Settings() {
     handleLogin()
   };
 
+
   const handleConfirmYes = () => {
     handleLogout();
     setShowConfirm(false);
   };
+  
 
   const handleConfirmCancel = () => {
     setShowConfirm(false);
   };
+  
+  
+   const handleNavigateSavedBlog=()=>{
+      navigate("/saved/blog")
+   }
+ 
+   const handleNavigation=(navId)=>{
+      navigate(navId)
+   }
+  
+   useEffect(() => {
+     const URI = location.pathname.split("/")
+     if(URI.length>2){
+        setshowOptions(false)
+     }else{
+        setshowOptions(true)
+     }
+   }, [location])
+   
 
   return (
     <div className="text-white w-full sm:w-full md:w-[80%] lg:w-[60%] pb-[76px]">
@@ -71,7 +101,14 @@ export default function Settings() {
       />
       <HeroUserSetting />
       <VerticalSpacer h="95px" />
-      <SettingOption imgsvg={Account} settingname="Account" />
+      <Outlet />
+      {showOptions&&
+      <>
+      <SettingOption 
+        imgsvg={Account} 
+        settingname="Account"
+        click={()=>handleNavigation("accounts")}
+      />
       <VerticalSpacer h="15px" />
       <SettingOption
         imgsvg={Blog}
@@ -80,13 +117,23 @@ export default function Settings() {
         click={handleNavigateToBlogs}
       />
       <VerticalSpacer h="15px" />
-      <SettingOption imgsvg={Profile} options={['username', 'profile photo', 'password']} settingname="Profile" />
+      <SettingOption imgsvg={Profile} options={['username', 'profile photo', 'password']} settingname="Profile"
+         click={()=>handleNavigation("profile")}
+      />
       <VerticalSpacer h="15px" />
-      <SettingOption imgsvg={Following} options={['following', 'followers']} settingname="Follows" />
+      <SettingOption imgsvg={Following} 
+        options={['following', 'followers']} 
+        settingname="Follows"
+        click={()=>handleNavigation("following-follower")}
+       />
       <VerticalSpacer h="15px" />
-      <SettingOption imgsvg={Saved} options={['post', 'blog']} settingname="Saved" />
+      <SettingOption imgsvg={Saved} options={['post', 'blog']} settingname="Saved"
+         click={handleNavigateSavedBlog}
+      />
       <VerticalSpacer h="15px" />
-      <SettingOption imgsvg={Privacy} options={['about', 'privacy']} settingname="Privacy & About" />
+      <SettingOption imgsvg={Privacy} options={['about', 'privacy']} settingname="Privacy & About" 
+         click={()=>handleNavigation("privacy-about")}
+      />
       <VerticalSpacer h="15px" />
       <SettingOption
         imgsvg={userState ? Logout : Login}
@@ -94,6 +141,11 @@ export default function Settings() {
         settingname={userState ? 'Logout' : 'Login'}
         click={handleConfirmLogout}
       />
+      </>
+      }
     </div>
   );
 }
+
+
+export default React.memo(Settings);

@@ -102,4 +102,4 @@ const FetchBlog = () => {
   );
 };
 
-export default FetchBlog;
+export default React.memo(FetchBlog);

@@ -55,22 +55,21 @@ const SinglePostComment = () => {
   }
 
   return (
-    <div className="w-[95%] flex flex-col items-center mt-3 select-none" ref={head}>
+    <div className="w-full flex flex-col items-center mt-3 select-none" ref={head}>
       <h1
-        className={`text-lg font-bold text-gray-200 text-start w-full pl-1 pr-1 ${
-          stickyBar &&
-          "sticky top-0 w-[100%] blur_effect_two p-3 text-2xl font-black pl-3 pt-4 pb-3 mb-2"
+        className={`text-lg font-bold text-gray-200 text-start pl-3 pt-4 pb-3 p-3 w-full mb-2 ${stickyBar &&
+          "sticky top-0 left-0 w-[100%] bg-[#71707040] backdrop-blur text-2xl font-black "
         } z-50`}
       >
         Comments
       </h1>
-      <div className="w-full ">
+      <div className="w-[95%] ">
         <InfiniteScroll
           dataLength={comments.length}
           next={fetchMoreComments}
           hasMore={hasMore}
           loader={<Spinner />}
-          endMessage={<p className=" text-[14px] text-gray-300 pb-2 pt-2 font-medium mb-5 mt-2 rounded-full px-4 bg-gray-400/20 w-fit active:bg-gray-400/50" onClick={handleBackToTop}> Back To Top </p>}
+          endMessage={<p className=" text-[14px] text-gray-300 pb-2 pt-2 font-medium mb-5 mt-2 rounded-full px-4 bg-[#f64e73] w-fit active:bg-[#f64e7398] shadow-xl shadow-gray-950" onClick={handleBackToTop}>Go Top</p>}
         >
           {comments.map(e => (
             <SinglePostCommentSection key={e._id} comment={e} />

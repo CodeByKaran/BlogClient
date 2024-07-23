@@ -1,18 +1,27 @@
-import React, { useEffect, useState, useCallback, useContext } from "react";
+import React, { useEffect, useState, useCallback, useContext,useRef } from "react";
 import { FetchData } from "../../../utils/Fetch.js";
 import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Spinner from "../../spinner/Spinner.jsx";
 import { BlogContext } from "../../../context/BlogContext.jsx";
 
+
 const Post = () => {
   const { userId } = useParams();
   const [page, setPage] = useState(1);
   const [posts, setPosts] = useState([]);
+  console.log(posts)
   const { totalBlog, setTotalBlog } = useContext(BlogContext);
+  const controllerRef = useRef()
+
 
   const fetchContent = useCallback(
-    (pageNum, controller) => {
+    (pageNum) => {
+      const controller = new AbortController();
+      if(controllerRef.current){
+         controllerRef.current.abort();
+      }
+      controllerRef.current = controller;
       FetchData(
         `/api/v1/blog/fetch/content?userId=${userId}&page=${pageNum}&pageSize=6`,
         { signal: controller.signal }
@@ -28,28 +37,31 @@ const Post = () => {
     [userId, setTotalBlog]
   );
 
-  useEffect(() => {
-    const controller = new AbortController();
-    fetchContent(page, controller);
-
-    return () => {
-      controller.abort();
-    };
-  }, [page, fetchContent]);
-
   const fetchNext = useCallback(() => {
-    setPage(prevPage => prevPage + 1);
+    const nextPage = page + 1;
+    fetchContent(nextPage)
+    setPage(nextPage)
+  }, [fetchContent,page]);
+  
+  
+  useEffect(() => {
+    fetchContent(page);
+    return () => {
+      if(controllerRef.current){
+         controllerRef.current.abort()
+      }
+    };
   }, []);
 
   return (
     <InfiniteScroll
-      dataLength={posts.length}
+      dataLength={posts?.length}
       next={fetchNext}
-      hasMore={posts.length < totalBlog || totalBlog === null}
+      hasMore={posts?.length < totalBlog || totalBlog === null}
       loader={<Spinner />}
       className="w-full flex flex-col items-center mt-3 mb-2"
     >
-      {posts.map((post, index) => (
+      {posts?.map((post, index) => (
         <div
           key={index}
           className={`w-[95%] bg-gray-600/40 rounded my-2 ${
