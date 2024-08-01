@@ -26,7 +26,6 @@ import { BlogProvider } from "./context/BlogContext.jsx";
 import SaveBlogs from "./page/save_blogs/SaveBlogs.jsx"
 import Account from "./page/account/Account.jsx"
 import Follow from "./page/follow/Follow.jsx"
-import Profile from "./page/profile/Profile.jsx"
 import PrivacyAbout from "./page/privacy_about/PrivacyAbout.jsx"
 import Follower from "./components/follow/Follower.jsx"
 import Following from "./components/follow/Following.jsx"
@@ -60,10 +59,9 @@ export default function App() {
           <Route path="search" element={<Search />} />
           <Route path="create-post" element={<CreatePost />} />
           <Route path="settings" element={<Settings />} >
-            <Route path="accounts" element={<Account />} />
             <Route path="following-follower" element={<Follow />}>
-             <Route path="follower" element={<Follower/>} />
-             <Route path="following" element={<Following/>} />
+             <Route path=":userId/follower" element={<Follower/>} />
+             <Route path=":userId/following" element={<Following/>} />
             </Route>
           </Route>
           <Route path="login" element={<Login />} />
@@ -76,7 +74,7 @@ export default function App() {
           <Route path="signup/:id/verify" element={<Verify />} />
           <Route path="saved/blog" element={<SaveBlogs />} />
           <Route path="settings/privacy-about" element={<PrivacyAbout />}/>   
-          <Route path="settings/profile" element={<Profile />}/>
+          <Route path="settings/account" element={<Account />}/>
           </Routes>
         <ShowBottomNav>
           <BottomNav />

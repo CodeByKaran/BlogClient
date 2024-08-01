@@ -69,7 +69,7 @@ const SinglePostComment = () => {
           next={fetchMoreComments}
           hasMore={hasMore}
           loader={<Spinner />}
-          endMessage={<p className=" text-[14px] text-gray-300 pb-2 pt-2 font-medium mb-5 mt-2 rounded-full px-4 bg-[#f64e73] w-fit active:bg-[#f64e7398] shadow-xl shadow-gray-950" onClick={handleBackToTop}>Go Top</p>}
+          endMessage={<p className=" text-[14px] text-gray-300 pb-2 pt-2 font-medium mb-5 mt-2 rounded-full px-4 bg-[#f64e73] w-fit active:bg-[#f64e7398] shadow-xl shadow-gray-950 select-none" onClick={handleBackToTop}>Go Top</p>}
         >
           {comments.map(e => (
             <SinglePostCommentSection key={e._id} comment={e} />

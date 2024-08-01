@@ -7,7 +7,7 @@ function SaveBlogs() {
   return (
     <div className="w-full sm:w-full md:w-[80%] lg:w-[60%]">
       <RouteNav 
-         ROUTE="Savedblogs"
+         ROUTE="saved - blogs"
        />
       <FetchCustomBlog 
         URI="/api/v1/save/blog/get"

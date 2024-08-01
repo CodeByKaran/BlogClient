@@ -82,7 +82,7 @@ const CreatePostForm = () => {
   }, [title, tags, navigate]);
 
   return (
-    <form className="w-full mt-14 scrollBar" onSubmit={handlePost}>
+    <form className="w-full mt-12 scrollBar" onSubmit={handlePost}>
       <DesginedTextArea
         ref={titleRef}
         val={title}

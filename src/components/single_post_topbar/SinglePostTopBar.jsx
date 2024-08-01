@@ -15,7 +15,7 @@ export default function SinglePostTopBar({user}) {
    }
    
   return (
-    <div className="flex justify-between items-center pl-3 pr-3 pb-2 text-white pt-4 w-full">
+    <div className="flex justify-between items-center pl-3 pr-3 pb-2 text-white pt-4 w-full select-none">
     <div className="flex items-center">
      <UserPhoto 
        src={user?.avatar}

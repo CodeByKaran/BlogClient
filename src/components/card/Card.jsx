@@ -13,6 +13,9 @@ import {
 import { FetchData } from "../../utils/Fetch.js";
 import { formatDate } from "../../utils/FormatData.js";
 import CommentChip from "../commet_chip/CommentChip.jsx";
+import ShowFullImage from "../../common/show_full_image/ShowFullImage.jsx"
+
+
 
 export default function Card({
   blog,
@@ -26,11 +29,13 @@ export default function Card({
     method: "POST"
   };
   const [overContent, setoverContent] = useState(true);
-  const [text, setText] = useState(blog.isFollowed ? "UnFollow" : "Follow");
+  
   const [showChip, setShowChip] = useState(false);
 
   const [moreClick, setmoreClick] = useState(false);
   const [sampleComments, setSampleComments] = useState([]);
+  const [openPopUp,setOpenPopUp] = useState(false)
+  const [disable,setDisable] = useState(false)
 
   useEffect(() => {
     if (blog?.content?.length > 120) {
@@ -40,9 +45,7 @@ export default function Card({
     }
   }, [blog?.content]);
 
-  useEffect(() => {
-    setText(blog?.isFollowed ? "UnFollow" : "Follow");
-  }, [blog.isFollowed]);
+  
 
   const handleMoreClick = () => {
     setmoreClick(!moreClick);
@@ -61,6 +64,7 @@ export default function Card({
   };
 
   const handleFollow = async id => {
+    setDisable(true)
     FetchData(`/api/v1/follow/user/to/${id}`, config)
       .then(data => {
         if (data.code === 200) {
@@ -69,10 +73,14 @@ export default function Card({
           showErrorToast(data.message);
         }
       })
-      .catch(error => showErrorToast(error));
+      .catch(error => showErrorToast(error))
+      .finally(()=>{
+         setTimeout(()=>setDisable(false),1000)
+      })
   };
 
   const handleUnfollow = async id => {
+    setDisable(true)
     FetchData(`/api/v1/follow/user/unfollow/${id}`, config)
       .then(data => {
         if (data.code === 200) {
@@ -81,7 +89,10 @@ export default function Card({
           showErrorToast(data.message);
         }
       })
-      .catch(error => showErrorToast(error));
+      .catch(error => showErrorToast(error))
+      .finally(()=>{
+         setTimeout(()=>setDisable(false),1000)
+      })
   };
 
   const handleComment = (blogId, manually = false) => {
@@ -120,9 +131,33 @@ export default function Card({
         .catch(err => showErrorToast(err));
     }
   };
+  
+  
+  const showImage=()=>{
+     setOpenPopUp(true)
+  }
+  
+  const closeImage=()=>{
+     setOpenPopUp(false)
+  }
+  
+  
+  useEffect(() => {
+    if (openPopUp) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }, [openPopUp]);
 
   return (
-    <div className="border-[0.8px] border-gray-500/20 rounded w-[95%] sm:w-[95%] md:w-[80%] lg:w-[55%] mt-4 mb-9 shadow-md shadow-slate-900 max-h-fit pb-2 overflow-x-hidden select-none">
+    <div className="border-[0.8px] border-gray-500/20 rounded w-[95%] sm:w-[95%] md:w-[80%] lg:w-[55%] mt-4 mb-9 shadow-md shadow-slate-900 max-h-fit pb-2 overflow-x-hidden select-none ">
+    {openPopUp&&
+      <ShowFullImage 
+        SRC={blog?.contentimg} 
+        CLOSE={closeImage}
+      />
+    }
       <div className="flex items-center justify-between select-none p-2">
         <div className="w-fit h-fit flex">
           <span className="w-[30px] h-[30px] rounded-full bg-gradient-to-br from-pink-300 to-red-300 overflow-hidden bg-cover object-cover ">
@@ -131,8 +166,8 @@ export default function Card({
               className="w-[100%] h-[100%] brightness-125 object-cover"
             />
           </span>
-          <div className="flex flex-col items-center justify-center w-fit h-fit text-gray-200  pl-2 leading-none">
-            <h2 className="text-start text-[15px] font-bold w-full">
+          <div className="flex flex-col items-center justify-center w-fit h-fit text-gray-200  pl-2 leading-[1.2]">
+            <h2 className="text-start text-[15px] font-bold w-full font-nunito font-medium">
               {blog.username}
             </h2>
             <p className="text-[13px] font-normal">
@@ -141,28 +176,32 @@ export default function Card({
           </div>
         </div>
         <ButtonBlack
-          text={text}
+          text={blog?.isFollowed?"unfollow":"follow"}
           width="90px"
           radius="25px"
           size="14px"
           fun={
-            text === "UnFollow"
+            blog?.isFollowed
               ? () => handleUnfollow(blog.owner)
               : () => handleFollow(blog.owner)
           }
+          disable={disable}
+          style={{
+             border:`${disable?"1px solid #dad1d5":""}`
+          }}
         />
       </div>
 
       <p
-        className={`overflow-clip min-h-[30px] max-h-fit leading-[18px] font-[400] text-[15px] text-gray-300 w-full text-start mt-2 ${
+        className={`overflow-clip min-h-[30px] max-h-fit leading-[1.2] font-[400] text-[16px] text-gray-300 w-full text-start mt-2 ${
           moreClick && "h-fit"
-        } select-none p-2`}
+        } select-none p-2 font-nunito font-nunito-semibold `}
       >
         {overContent ? (
           <>
             {moreClick ? (
               <span
-                className="text-gray-300 font- select-none leading-[18px] font-[400] text-[15px]"
+                className="text-gray-300 font- select-none leading-[1.2] font-nunito-semibold text-[16px]"
                 onClick={handleMoreClick}
               >
                 {" "}
@@ -172,7 +211,7 @@ export default function Card({
               <>
                 {blog.content?.slice(0, 110)}
                 <span
-                  className="text-gray-100 font-semibold select-none   "
+                  className="text-gray-200 font-semibold select-none   "
                   onClick={handleMoreClick}
                 >
                   {" "}
@@ -186,7 +225,7 @@ export default function Card({
         )}
       </p>
 
-      <div className="w-full  rounded-b overflow-hidden relative max-h-[350px] min-h-[200px] bg-gray-700/10">
+      <div className="w-full  rounded-b overflow-hidden relative max-h-[350px] min-h-[200px] bg-gray-700/10" onClick={showImage}>
         <img
           src={`${blog.contentimg?.replace("/upload/", "/upload/c_fill,q_auto/")}`}
           srcSet={`${blog.contentimg?.replace(

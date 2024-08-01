@@ -45,15 +45,6 @@ function Settings() {
   };
   
 
-  const handleNavigateToBlogs = () => {
-    try {
-      navigate(`/user/blog/${userState._id}`);
-    } catch (error) {
-      showErrorToast('You must be logged in first!');
-    }
-  };
-
-
   const handleConfirmLogout = () => {
     if(userState)
     setShowConfirm(true);
@@ -73,12 +64,13 @@ function Settings() {
   };
   
   
-   const handleNavigateSavedBlog=()=>{
-      navigate("/saved/blog")
-   }
- 
+   
    const handleNavigation=(navId)=>{
-      navigate(navId)
+      try{
+        navigate(navId)
+      }catch(err){
+         showErrorToast(err)
+      }
    }
   
    useEffect(() => {
@@ -104,21 +96,12 @@ function Settings() {
       <Outlet />
       {showOptions&&
       <>
-      <SettingOption 
-        imgsvg={Account} 
-        settingname="Account"
-        click={()=>handleNavigation("accounts")}
-      />
       <VerticalSpacer h="15px" />
       <SettingOption
         imgsvg={Blog}
         options={['personal']}
         settingname="My Blogs"
-        click={handleNavigateToBlogs}
-      />
-      <VerticalSpacer h="15px" />
-      <SettingOption imgsvg={Profile} options={['username', 'profile photo', 'password']} settingname="Profile"
-         click={()=>handleNavigation("profile")}
+        click={()=>handleNavigation(`/user/blog/${userState?._id}`)}
       />
       <VerticalSpacer h="15px" />
       <SettingOption imgsvg={Following} 
@@ -128,12 +111,16 @@ function Settings() {
        />
       <VerticalSpacer h="15px" />
       <SettingOption imgsvg={Saved} options={['post', 'blog']} settingname="Saved"
-         click={handleNavigateSavedBlog}
+         click={()=>handleNavigation("/saved/blog")}
       />
       <VerticalSpacer h="15px" />
       <SettingOption imgsvg={Privacy} options={['about', 'privacy']} settingname="Privacy & About" 
          click={()=>handleNavigation("privacy-about")}
       />
+      <VerticalSpacer h="15px" />
+      <SettingOption imgsvg={Profile} options={['username', 'profile photo', 'password','delete']} settingname="Account"
+         click={()=>handleNavigation("account")}
+      />      
       <VerticalSpacer h="15px" />
       <SettingOption
         imgsvg={userState ? Logout : Login}

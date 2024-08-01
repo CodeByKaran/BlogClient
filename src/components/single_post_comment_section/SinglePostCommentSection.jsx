@@ -6,7 +6,7 @@ import Menu from "../../assets/Menu.svg"
 import {formatDate} from "../../utils/FormatData.js"
 
 const SinglePostCommentSection = ({comment}) => {
-   console.log(comment)
+   
   return (
     <div className="h-fit w-full flex flex-col items-center relative select-none ">
      <div className={`w-full rounded   border-b-2 border-b-[#b0b0b088] bg-inherit flex flex-col pt-2 px-2 pb-1 relative shadow-lg shadow-[#0a0a0a] overflow-hidden my-2 bg-[#f37794] inset_top_shadow`}>

@@ -6,7 +6,7 @@ export default function ButtonWhite({ text = "Button",
    radius ,
    size,
    effect=true,
-   style={}
+   style={},
  }) {
   const [pressed, setPressed] = useState(false);
 
@@ -29,6 +29,7 @@ export default function ButtonWhite({ text = "Button",
          fontSize: `${size&&size}`,
          ...style
       }}
+      
     >
       {text}
     </button>

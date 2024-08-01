@@ -10,7 +10,7 @@ const Post = () => {
   const { userId } = useParams();
   const [page, setPage] = useState(1);
   const [posts, setPosts] = useState([]);
-  console.log(posts)
+  
   const { totalBlog, setTotalBlog } = useContext(BlogContext);
   const controllerRef = useRef()
 

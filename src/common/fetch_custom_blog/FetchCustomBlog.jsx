@@ -1,17 +1,24 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useState, useCallback, useRef, useContext } from "react";
 import { FetchData } from "../../utils/Fetch.js";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Spinner from "../../components/spinner/Spinner.jsx";
 import Card from "../../components/card/Card.jsx";
 import { showSuccessToast, showErrorToast } from "../../utils/ShowToast.js";
+import {BlogContext} from "../../context/BlogContext.jsx"
+import useCustomNavigate from "../../hooks/useCustomNavigate.js"
+
+
 
 function FetchCustomBlog({ USERID, URI, CONFIG, PAGE, PAGESIZE }) {
+  
+  const navigate = useCustomNavigate();
   const [blogs, setBlogs] = useState([]);
   const [totalBlogs, setTotalBlogs] = useState(0);
   const [page, setPage] = useState(PAGE || 1);
   const [pageSize, setPageSize] = useState(PAGESIZE || 10);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const controllerRef = useRef(null);
+  const { totalBlog, setTotalBlog } = useContext(BlogContext);
 
   const fetchBlogs = useCallback(
     (paraOne) => {
@@ -25,9 +32,11 @@ function FetchCustomBlog({ USERID, URI, CONFIG, PAGE, PAGESIZE }) {
         .then((res) => {
           setBlogs((prev) => [...prev, ...res.data.blogs]);
           setTotalBlogs(res.data.totalBlogCount);
+          setTotalBlog(res.data.totalBlogCount)
         })
         .catch((err) => {
           if (err.name !== "AbortError") {
+            navigate(-1,true)
             showErrorToast(err);
           }
         })

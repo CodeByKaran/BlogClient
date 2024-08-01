@@ -6,18 +6,19 @@ export default {
   ],
   theme: {
     extend: {
-      keyframes:{
-        comeup:{
-          '0%':{opacity:'0.75'},
-          '50%':{opactiy:'1'},
-          '100%':{opactiy:"0"}
-        },
+      fontFamily: {
+        nunito: ['Nunito', 'sans-serif'],
       },
-      animation:{
-        comeup:'comeup 3s ease-in-out  1'
-      }
+      fontWeight: {
+        'nunito-light': 300,
+        'nunito-normal': 400,
+        'nunito-medium': 500,
+        'nunito-semibold': 600,
+        'nunito-bold': 700,
+        'nunito-extrabold': 800,
+      },
     },
-  },
+    },
   plugins: [],
 }
 
